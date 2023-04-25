@@ -51,5 +51,7 @@ def script1():
 @app.route('/script2')
 def script2():
     input_text = request.args.get('input', '')
-    output = f'Output from script 2 with input: {input_text}'
+    # output = f'Output from script 2 with input: {input_text}'
+    output = f'After Calculation: {eval(input_text)}'
+    print(output)
     return jsonify({'output': output})
