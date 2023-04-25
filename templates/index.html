@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<center><h1> Encephalon </h1></center>
+<h1 class="protittle">Encephalon - Solve and Learn</h1>
     <h1>Upload an Image</h1>
     <form id="upload-form" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*">
-        <input type="button" value="Upload" id="upload-btn">
+        <input class="button_up" type="button" value="Upload" id="upload-btn">
     </form>
     <img width="300" height='200' id="preview" src="/static/placeholder-image.jpg">
     {% with messages = get_flashed_messages() %}
