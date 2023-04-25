@@ -55,3 +55,8 @@ def script2():
     output = f'After Calculation: {eval(input_text)}'
     print(output)
     return jsonify({'output': output})
+
+
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html')
