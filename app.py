@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import Separate_char
 import detection
+import math
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -52,8 +53,43 @@ def script1():
 def script2():
     input_text = request.args.get('input', '')
     # output = f'Output from script 2 with input: {input_text}'
-    output = f'After Calculation: {eval(input_text)}'
-    print(output)
+
+    if input_text.count("<") == 1:
+        A = input_text.index("<")
+        first = int(input_text[0:A])
+        last = int(input_text[A + 1:])
+        print(first < last)
+        output = f'After Calculation: {first < last}'
+
+    elif input_text.count(">") == 1:
+        A = input_text.index(">")
+        first = int(input_text[0:A])
+        last = int(input_text[A + 1:])
+        print(first < last)
+        output = f'After Calculation: {first > last}'
+
+    elif input_text.count("<") == 2:
+        A = input_text.index("<")
+        first = int(input_text[0:A])
+        last = int(input_text[A + 2:])
+        print(first < last)
+        output = f'After Calculation: {first << last}'
+
+    elif input_text.count(">") == 2:
+        A = input_text.index(">")
+        first = int(input_text[0:A])
+        last = int(input_text[A + 2:])
+        print(first < last)
+        output = f'After Calculation: {first >> last}'
+
+    elif input_text[0:4] == 'sqrt':
+        sq_in = int(input_text[4:])
+        output = f'After Calculation: {math.sqrt(sq_in)}'
+
+
+    else:
+        output = f'After Calculation: {eval(input_text)}'
+        print(output)
     return jsonify({'output': output})
 
 

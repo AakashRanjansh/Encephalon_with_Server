@@ -8,7 +8,7 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
 loaded_model.load_weights("model_final.h5")
-# aakash = []
+aakash = []
 
 
 def detector(inp_file):
@@ -70,11 +70,45 @@ def detector(inp_file):
         train_data[i] = train_data[i].reshape(1, 28, 28, 1)
     #     result=loaded_model.predict_classes(train_data[i])
         result = np.argmax(loaded_model.predict(train_data[i]), axis=-1)
-        # aakash.append(result[0])
+        aakash.append(result[0])
         if (result[0] == 10):
             char_string = char_string + '-'
         if (result[0] == 11):
             char_string = char_string + '+'
+
+        if (result[0] == 12):
+            char_string = char_string + '/'
+
+        if (result[0] == 23):
+            char_string = char_string + "*"
+
+        if (result[0] == 15):
+            char_string = char_string + "("
+
+        if (result[0] == 16):
+            char_string = char_string + ")"
+
+        if (result[0] == 13):
+            char_string = char_string + "**"
+
+        if (result[0] == 17):
+            char_string = char_string + "pi"
+
+        # if (result[0] == 18):
+        #     char_string = char_string + "//"
+
+        if (result[0] == 19):
+            char_string = char_string + ">"
+
+        if (result[0] == 20):
+            char_string = char_string + "<"
+
+        # if (result[0] == 13):
+        #     char_string = char_string + "="
+
+        if (result[0] == 21):
+            char_string = char_string + "sqrt"
+
         if (result[0] == 0):
             char_string = char_string + '0'
         if (result[0] == 1):
@@ -84,7 +118,7 @@ def detector(inp_file):
         if (result[0] == 3):
             char_string = char_string + '3'
         if (result[0] == 4):
-            char_string = char_string+ '4'
+            char_string = char_string + '4'
         if (result[0] == 5):
             char_string = char_string+ '5'
         if (result[0] == 6):
@@ -107,14 +141,15 @@ def detector_result():
             # print(f"digits/digit{image_num}.png")
             charact = detector(f"static/digits/digit{image_num}.png")
             # print(charact[0])
-            ranjan_final.append(charact[0])
+            ranjan_final.append(charact[0:4])
         except:
             print("Error")
             ranjan_final.append("Error")
         finally:
             image_num += 1
 
-    # print(ranjan_final)
+    print(ranjan_final)
+    # print(aakash)
 
 
     return ranjan_final
