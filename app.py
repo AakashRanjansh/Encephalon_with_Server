@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import Separate_char
+import textextract
 import detection
 import math
 import cmath
@@ -123,6 +124,14 @@ def script3():
 # @app.route('/script4')
 # def quiz():
 #     return render_template('quiz.html')
+
+@app.route('/extract_text')
+def extract_text():
+    output = str(textextract.extract_text())
+
+    return jsonify({'output': output})
+
+
 
 @app.route('/quiz')
 def quiz():

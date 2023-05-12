@@ -24,9 +24,18 @@
 <h1>Run Scripts</h1>
 <button id="script1">Recognize</button>
 <button id="script2">Solve Arithmetic</button>
+<button id="extract_text">Extract Text</button>
 <button id="script3">Solve Quadratic</button>
 <button id="quiz">Quiz</button>
 <button id="coding-platform">Coding Platform</button>
+<button id="open-popup">Open Popup</button>
+
+<!-- Popup container -->
+<div id="popup-container" class="popup-container">
+    <div class="iframe-container">
+        <iframe id="popup-iframe" src="" frameborder="0"></iframe>
+    </div>
+</div>
 
 <h1>Output with Edit Support</h1>
 <textarea id="output"></textarea>
@@ -75,6 +84,24 @@
         });
     });
 
+
+        $('#extract_text').click(function () {
+        $.ajax({
+            url: '/extract_text',
+            beforeSend: function () {
+                $('#output').val('Extracting Text From Image...');
+            },
+            success: function (data) {
+                $('#output').val(data.output);
+            }
+        });
+    });
+
+
+
+
+
+
     $('#script2').click(function () {
         var input = $('#output').val();
         $.ajax({
@@ -112,6 +139,24 @@
         window.location.href = "{{ url_for('codingplatform') }}";
     });
 
+
+
+var popupContainer = $('#popup-container');
+    var popupIframe = $('#popup-iframe');
+
+    // Show/hide the popup
+    $('#open-popup').click(function () {
+        var popupUrl = '{{ url_for('static',filename='popup.html') }}'; // Replace with the URL of the HTML page you want to display
+
+        popupIframe.attr('src', popupUrl);
+        popupContainer.fadeIn();
+    });
+
+    // Close the popup
+    function closePopup() {
+        popupIframe.attr('src', '');
+        popupContainer.fadeOut();
+    }
 
 </script>
 </body>
