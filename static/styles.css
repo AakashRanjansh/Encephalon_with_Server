@@ -1,16 +1,16 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
 
 }
 
 h1 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 form {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -23,17 +23,17 @@ input::file-selector-button {
 }
 
 input[type="button"], button {
-  padding: 5px 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: 2px solid #008CBA;
-  border-radius: 9px;
-  cursor: pointer;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #008CBA;
+    border-radius: 9px;
+    cursor: pointer;
 }
 
 input[type="submit"]:hover, button:hover {
-  background-color: #1deac5;
-      background-position: 100% 0;
+    background-color: #1deac5;
+    background-position: 100% 0;
     moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
@@ -41,24 +41,24 @@ input[type="submit"]:hover, button:hover {
 }
 
 textarea {
-  width: 100%;
-  height: 200px;
-  border-radius: 5px;
-  resize: none;
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    resize: none;
 }
 
 
 .button_up {
-padding: 5px 10px;
-  font-size: 18px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #04AA6D;
-  border: none;
-  border-radius: 9px;
-  box-shadow: 0 5px #999;
+    padding: 5px 10px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 9px;
+    box-shadow: 0 5px #999;
 }
 
 .button_up:active {
@@ -68,18 +68,19 @@ padding: 5px 10px;
 }
 
 
-.protittle{
-    position: absolute;height: 106px;
-left: 600px;
-top: 0px;
+.protittle {
+    position: absolute;
+    height: 106px;
+    left: 600px;
+    top: 0px;
     font-family: 'Italianno', serif;
-font-style: normal;
-font-weight: 400;
-font-size: 30px;
-line-height: 106px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 106px;
 
-color: #f54a50;
+    color: #f54a50;
 
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 

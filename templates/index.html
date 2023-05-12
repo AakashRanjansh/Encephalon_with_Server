@@ -6,84 +6,113 @@
 </head>
 <body>
 <h1 class="protittle">Encephalon - Solve and Learn</h1>
-    <h1>Upload an Image</h1>
-    <form id="upload-form" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*">
-        <input class="button_up" type="button" value="Upload" id="upload-btn">
-    </form>
-    <img width="300" height='200' id="preview" src="/static/placeholder-image.jpg">
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashes">
+<h1>Upload an Image</h1>
+<form id="upload-form" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*">
+    <input class="button_up" type="button" value="Upload" id="upload-btn">
+</form>
+<img width="300" height='200' id="preview" src="/static/placeholder-image.jpg">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-    <h1>Run Scripts</h1>
-    <button id="script1">Recognize</button>
-    <button id="script2">Solve Arithmetic</button>
-    <h1>Output</h1>
-    <textarea id="output"></textarea>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $('input[type="file"]').change(function (e) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#preview').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        });
+        </ul>
+    {% endif %}
+{% endwith %}
+<h1>Run Scripts</h1>
+<button id="script1">Recognize</button>
+<button id="script2">Solve Arithmetic</button>
+<button id="script3">Solve Quadratic</button>
+<button id="quiz">Quiz</button>
+<button id="coding-platform">Coding Platform</button>
 
-        $('#upload-btn').click(function () {
-            var form = $('#upload-form')[0];
-            var formData = new FormData(form);
+<h1>Output with Edit Support</h1>
+<textarea id="output"></textarea>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('input[type="file"]').change(function (e) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    });
 
-            $.ajax({
-                url: '/upload',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function () {
-                    $('#output').val('Uploading image...');
-                },
-                success: function (data) {
-                    $('#output').val('Image uploaded successfully.');
-                    $('#preview').attr('src', data.url);
-                },
-                error: function () {
-                    $('#output').val('Error uploading image.');
-                }
-            });
-        });
+    $('#upload-btn').click(function () {
+        var form = $('#upload-form')[0];
+        var formData = new FormData(form);
 
-        $('#script1').click(function() {
-            $.ajax({
-                url: '/script1',
-                beforeSend: function() {
-                    $('#output').val('Recognizing Text From Image...');
-                },
-                success: function(data) {
-                    $('#output').val(data.output);
-                }
-            });
+        $.ajax({
+            url: '/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('#output').val('Uploading image...');
+            },
+            success: function (data) {
+                $('#output').val('Image uploaded successfully.');
+                $('#preview').attr('src', data.url);
+            },
+            error: function () {
+                $('#output').val('Error uploading image.');
+            }
         });
+    });
 
-        $('#script2').click(function() {
-            var input = $('#output').val();
-            $.ajax({
-                url: '/script2',
-                data: {input: input},
-                beforeSend: function() {
-                    $('#output').val('Solving...');
-                },
-                success: function(data) {
-                    $('#output').val(data.output);
-                }
-            });
+    $('#script1').click(function () {
+        $.ajax({
+            url: '/script1',
+            beforeSend: function () {
+                $('#output').val('Recognizing Text From Image...');
+            },
+            success: function (data) {
+                $('#output').val(data.output);
+            }
         });
-    </script>
+    });
+
+    $('#script2').click(function () {
+        var input = $('#output').val();
+        $.ajax({
+            url: '/script2',
+            data: {input: input},
+            beforeSend: function () {
+                $('#output').val('Solving...');
+            },
+            success: function (data) {
+                $('#output').val(data.output);
+            }
+        });
+    });
+
+    $('#script3').click(function () {
+        var input = $('#output').val();
+        $.ajax({
+            url: '/script3',
+            data: {input: input},
+            beforeSend: function () {
+                $('#output').val('Solving Quadratic...');
+            },
+            success: function (data) {
+                $('#output').val(data.output);
+            }
+        });
+    });
+
+
+    $('#quiz').click(function () {
+        window.location.href = "{{ url_for('quiz') }}";
+    });
+
+    $('#coding-platform').click(function () {
+        window.location.href = "{{ url_for('codingplatform') }}";
+    });
+
+
+</script>
 </body>
 </html>

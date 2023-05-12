@@ -3,11 +3,23 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 import Separate_char
 import detection
 import math
+import cmath
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 # app.config['UPLOAD_FOLDER'] = './static'
 app.config['UPLOAD_FOLDER'] = './static/Images'
+
+
+def quadra(a=1,b=1,c=1):
+    # calculate the discriminant
+    d = (b ** 2) - (4 * a * c)
+
+    # find two solutions
+    sol1 = (-b - cmath.sqrt(d)) / (2 * a)
+    sol2 = (-b + cmath.sqrt(d)) / (2 * a)
+
+    return 'solution are {0} and {1}'.format(sol1, sol2)
 
 
 @app.route('/')
@@ -93,6 +105,30 @@ def script2():
     return jsonify({'output': output})
 
 
+
+@app.route('/script3')
+def script3():
+    input_text = request.args.get('input', '')
+    # output = f'Output from script 2 with input: {input_text}'
+    a = int(input_text[0])
+    b = int(input_text[3])
+    c = int(input_text[6])
+
+
+    output = quadra(a,b,c)
+
+    return jsonify({'output': output})
+
+
+# @app.route('/script4')
+# def quiz():
+#     return render_template('quiz.html')
+
 @app.route('/quiz')
 def quiz():
     return render_template('quiz.html')
+
+
+@app.route('/codingplatform')
+def codingplatform():
+    return render_template('compiler.html')

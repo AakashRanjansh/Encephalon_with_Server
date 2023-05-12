@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encephalon Coding Platform</title>
+  <style>
+
+
+
+.pltittle {
+    position: absolute;
+    height: 106px;
+    left: 600px;
+    top: 0px;
+    font-family: 'Italianno', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 106px;
+
+    color: #f54a50;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+  body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    select {
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .container {
+      display: none;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .container pre {
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin: 0;
+    }
+  </style>
+  <script>
+    function showContent() {
+      var selectedOption = document.getElementById("selectOptions").value;
+      var containers = document.getElementsByClassName("container");
+
+      // Hide all containers
+      for (var i = 0; i < containers.length; i++) {
+        containers[i].style.display = "none";
+      }
+
+      // Show the selected container
+      document.getElementById(selectedOption).style.display = "block";
+    }
+  </script>
+</head>
+<body>
+  <h1 class="pltittle">Encephalon Coding Platform</h1>
+  <h1>Choose language:</h1>
+  <select id="selectOptions" onchange="showContent()">
+    <option value="" selected>Choose language</option>
+    <option value="python">Python</option>
+    <option value="ccompiler">C</option>
+    <option value="cplus">C++</option>
+    <option value="java">Java</option>
+  </select>
+
+  <div id="python" class="container" data-pym-src=
+  "https://www.jdoodle.com/embed/v0/6e9k?stdin=1&arg=0&rw=1">
+  </div>
+
+  <div id="ccompiler" class="container" data-pym-src=
+  "https://www.jdoodle.com/embed/v0/6e9D?stdin=1&arg=0&rw=1">
+  </div>
+
+  <div id="cplus" class="container" data-pym-src=
+  "https://www.jdoodle.com/embed/v0/6e9F?stdin=1&arg=0&rw=1">
+  </div>
+
+  <div id="java" class="container" data-pym-src=
+  "https://www.jdoodle.com/embed/v0/6e9A?stdin=1&arg=0&rw=1">
+
+  </div>
+
+  <script>
+    // Show the default container on page load
+    document.getElementById("python").style.display = "block";
+
+  </script>
+
+<script src=
+"https://www.jdoodle.com/assets/jdoodle-pym.min.js"
+		type="text/javascript">
+	</script>
+</body>
+</html>
