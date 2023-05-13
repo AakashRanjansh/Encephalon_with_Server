@@ -132,7 +132,6 @@ def script3():
         c = int(input_text[7:9])
     else:
         c = int(input_text[7])
-    print(a,b,c)
 
     output = quadra(a,b,c)
 
