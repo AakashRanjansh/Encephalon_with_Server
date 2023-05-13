@@ -20,7 +20,7 @@ def quadra(a=1,b=1,c=1):
     sol1 = (-b - cmath.sqrt(d)) / (2 * a)
     sol2 = (-b + cmath.sqrt(d)) / (2 * a)
 
-    return 'solution are {0} and {1}'.format(sol1, sol2)
+    return 'After Calculation: solution are {0} and {1}'.format(sol1, sol2)
 
 
 @app.route('/')
@@ -47,8 +47,22 @@ def script1():
         # output = 'Output from script 1'
         out_put = detection.detector_result()
         output = ""
-        for i in out_put:
-            output += i
+        input_text = out_put
+        new_output = []
+        print(input_text[-1])
+        if input_text[-1] == '0':
+            for i in range(len(input_text)):
+                if input_text[i] == '*':
+                    new_output.append('x')
+                elif input_text[i] == '-':
+                    new_output.append('=')
+                else:
+                    new_output.append(input_text[i])
+            for j in new_output:
+                output += j
+        else:
+            for i in out_put:
+                output += i
 
         folder_path = './static/digits/'
 
@@ -110,11 +124,15 @@ def script2():
 @app.route('/script3')
 def script3():
     input_text = request.args.get('input', '')
+
     # output = f'Output from script 2 with input: {input_text}'
     a = int(input_text[0])
-    b = int(input_text[3])
-    c = int(input_text[6])
-
+    b = int(input_text[4])
+    if str(input_text[8]).isdigit():
+        c = int(input_text[7:9])
+    else:
+        c = int(input_text[7])
+    print(a,b,c)
 
     output = quadra(a,b,c)
 
