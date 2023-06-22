@@ -33,7 +33,7 @@ A step by step series that tell you how to run this project
 1. Clone the project
 
 ```bash
-  git clone https://github.com/AakashRanjansh/Gesture_System_Control.git
+  git clone https://github.com/AakashRanjansh/Encephalon_with_Server.git
 ```
 
 2. Install all the requirements
