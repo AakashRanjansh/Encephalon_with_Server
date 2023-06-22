@@ -48,16 +48,16 @@ python app.py
 ```
 
 
-## Output Screenshot
+## Output
 
 ### Main Screen
-
 ![Main Screen](https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/fd8f99e7-9ead-4e0a-8d3b-d90e3e918892)
 
 
 ## Output Videos
+https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/d5d9b584-e29b-44a2-9e59-4c14c4f2d7f1
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rRW7QwNRqU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 ## Support
 
