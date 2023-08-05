@@ -53,6 +53,9 @@ python app.py
 ### Main Screen
 ![Main Screen](https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/fd8f99e7-9ead-4e0a-8d3b-d90e3e918892)
 
+### Encephalon AI ChatBot
+![Screenshot (24)](https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/bf3d7315-bd9b-40b2-8172-483389cd2443)
+
 
 ## Output Videos
 https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/d5d9b584-e29b-44a2-9e59-4c14c4f2d7f1
