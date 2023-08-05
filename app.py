@@ -5,11 +5,27 @@ import textextract
 import detection
 import math
 import cmath
+from pyllamacpp.model import Model
+import html
+import time
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 # app.config['UPLOAD_FOLDER'] = './static'
 app.config['UPLOAD_FOLDER'] = './static/Images'
+
+
+prompt_context = """Act as Encephalon AI Chatbot.Your Name is Encephalon AI, Encephalon AI Chatbot is helpful, kind, honest,
+and never fails to answer the User's requests immediately and with precision."""
+
+prompt_prefix = "\nUser:"
+prompt_suffix = "\nEncephalon AI:"
+
+model = Model('C://Users//Sahaa//Downloads//WizardLM-7B-uncensored.ggmlv3.q4_0.bin',
+              n_ctx=512,
+              prompt_context=prompt_context,
+              prompt_prefix=prompt_prefix,
+              prompt_suffix=prompt_suffix)
 
 
 def quadra(a=1,b=1,c=1):
@@ -67,6 +83,8 @@ def script1():
             file_path = os.path.join(folder_path, filename)
             if os.path.isfile(file_path):
                 os.remove(file_path)
+
+
     else:
         output = 'Character Segmentation Failed...'
 
@@ -115,6 +133,32 @@ def script2():
         output = f'After Calculation: {eval(input_text)}'
         print(output)
     return jsonify({'output': output})
+
+
+@app.route('/get_response', methods=['POST'])
+def get_response():
+    data = request.json
+    user_message = data.get('prompt')
+
+    # Simulate a delay to show the "Typing" message
+    time.sleep(2)
+
+    generated_response = ""
+    for token in model.generate(user_message,
+                                antiprompt='User:',
+                                n_threads=10,
+                                n_predict=500,
+                                repeat_penalty=1.0):
+        generated_response += str(token)
+
+    # Escape HTML entities to prevent XSS attacks
+    generated_response = html.escape(generated_response)
+    return generated_response
+
+
+
+
+
 
 
 

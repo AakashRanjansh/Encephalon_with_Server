@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<h1 class="protittle">Encephalon - Solve and Learn</h1>
+<h1 class="protittle" style="text-align: center">Encephalon - Solve and Learn</h1>
 <h1>Upload an Image</h1>
 <form id="upload-form" enctype="multipart/form-data">
     <input type="file" name="file" accept="image/*">
@@ -21,7 +21,7 @@
         </ul>
     {% endif %}
 {% endwith %}
-<h1>Run Scripts</h1>
+<h1> </h1>
 <button id="script1">Recognize</button>
 <button id="script2">Solve Arithmetic</button>
 <button id="extract_text">Extract Text</button>
@@ -146,7 +146,7 @@ var popupContainer = $('#popup-container');
 
     // Show/hide the popup
     $('#open-popup').click(function () {
-        var popupUrl = '{{ url_for('static',filename='popup.html') }}'; // Replace with the URL of the HTML page you want to display
+        var popupUrl = '{{ url_for('static',filename='bot.html') }}'; // Replace with the URL of the HTML page you want to display
 
         popupIframe.attr('src', popupUrl);
         popupContainer.fadeIn();

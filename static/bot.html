@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encephalon AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        #chat-container {
+            max-width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 13px;
+        }
+
+        #chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        }
+
+        .user-message {
+            color: #007bff;
+            background-color: #dcf8c6;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 70%;
+            align-self: flex-end;
+            margin-bottom: 10px;
+            clear: both;
+            float: right;
+        }
+
+        .encephalon-message {
+            color: #28a745;
+            background-color: #e6f7ec;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 70%;
+            align-self: flex-start;
+            margin-bottom: 10px;
+            clear: both;
+            float: left;
+        }
+
+
+        .typing-message {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            color: #ff6600;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #user-input {
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+
+
+        .cross-1px-button {
+            position: absolute;
+            right: 32px;
+            top: 15px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .cross-1px-button:hover {
+            opacity: 1;
+        }
+
+        .cross-1px-button:before,
+        .cross-1px-button:after {
+            position: absolute;
+            left: 15px;
+            content: ' ';
+            height: 33px;
+            width: 2px;
+            background-color: #333;
+            transition: transform 0.3s ease;
+        }
+
+        .cross-1px-button:before {
+            transform: rotate(45deg);
+        }
+
+        .cross-1px-button:after {
+            transform: rotate(-45deg);
+        }
+
+        .cross-1px-button:hover:before {
+            transform: rotate(225deg);
+        }
+
+        .cross-1px-button:hover:after {
+            transform: rotate(135deg);
+        }
+
+
+    </style>
+</head>
+<body>
+<h3>Encephalon AI ChatBot</h3>
+<a onclick="closePopup()" class="cross-1px-button"></a>
+<div id="chat-container">
+    <pre id="chat-messages"></pre>
+    <div id="typing-indicator"></div>
+    <input type="text" id="user-input" placeholder="User: " autofocus>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const chatMessages = document.getElementById("chat-messages");
+        const typingIndicator = document.getElementById("typing-indicator");
+        const userInput = document.getElementById("user-input");
+
+        userInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                const userMessage = userInput.value;
+                userInput.value = "";
+                displayMessage(`User: ${userMessage}`, "user-message");
+                fetchResponse(userMessage);
+            }
+        });
+
+        function displayMessage(message, className) {
+            const messageElement = document.createElement("div");
+            messageElement.innerHTML = message; // Render HTML entities as raw HTML
+            messageElement.classList.add(className);
+            chatMessages.appendChild(messageElement);
+        }
+
+        function displayTypingIndicator() {
+            const typingElement = document.createElement("div");
+            typingElement.textContent = "Typing...";
+            typingElement.classList.add("typing-message");
+            typingIndicator.appendChild(typingElement);
+        }
+
+
+        function removeTypingIndicator() {
+            typingIndicator.innerHTML = "";
+        }
+
+        function fetchResponse(prompt) {
+            displayTypingIndicator();
+            fetch("/get_response", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({prompt}),
+            })
+                .then(response => response.text())
+                .then(response => {
+                    removeTypingIndicator();
+                    displayMessage(`Encephalon AI: ${response}`, "encephalon-message");
+                })
+                .catch(error => console.error("Error fetching response:", error));
+        }
+    });
+
+    function closePopup() {
+        window.parent.closePopup();
+    }
+</script>
+</body>
+</html>
