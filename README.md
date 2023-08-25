@@ -61,6 +61,13 @@ python app.py
 https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/d5d9b584-e29b-44a2-9e59-4c14c4f2d7f1
 
 
+https://github.com/AakashRanjansh/Encephalon_with_Server/assets/60313003/c51a21d9-f88f-49dd-9fee-c40f924bcdb8
+
+
+
+
+
+
 
 ## Support
 
